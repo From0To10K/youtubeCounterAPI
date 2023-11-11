@@ -1,5 +1,6 @@
 // Load libs
 const express = require('express');
+const https = require("https");
 var cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -81,7 +82,7 @@ try {
 }
 
 // Launch server
-app.createServer(
+https.createServer(
     // Provide the private and public key to the server by reading each
     // file's content with the readFileSync() method.
     {
