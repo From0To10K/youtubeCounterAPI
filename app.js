@@ -1,11 +1,11 @@
 // Load libs
 const express = require('express');
-var cors = require('cors');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 
 // CONSTANTS
-const APP_PORT = 1337;
+const APP_PORT = process.env.PORT || 8080;
 
 // Express app
 const app = express();
@@ -62,23 +62,6 @@ app.post('/updateFollowers', (req, res) => {
     // Send success
     return res.status(200).send({ result: true});
 });
-
-// When server started, try to load data saved
-try {
-    const jsonString = fs.readFileSync("./config.json");
-    const data = JSON.parse(jsonString);
-
-    // Update values
-    followersCounter = data.followersCounter;
-    followersDate = data.followersDate;
-} catch (err) {
-
-    // Get error only when file is created
-    if (err.code !== "ENOENT") {
-        console.log(err);
-        return;
-    }
-}
 
 // Launch server
 app.listen(APP_PORT, () => console.log(`Started server at http://localhost:`+APP_PORT));
