@@ -81,4 +81,12 @@ try {
 }
 
 // Launch server
-app.listen(APP_PORT, () => console.log(`Started server at http://localhost:`+APP_PORT));
+app.createServer(
+    // Provide the private and public key to the server by reading each
+    // file's content with the readFileSync() method.
+    {
+        key: fs.readFileSync("key.pem"),
+        cert: fs.readFileSync("cert.pem"),
+    },
+    app
+).listen(APP_PORT, () => console.log(`Started server at http://localhost:`+APP_PORT));
