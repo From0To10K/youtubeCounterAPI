@@ -1,6 +1,5 @@
 // Load libs
 const express = require('express');
-const https = require("https");
 var cors = require('cors');
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -81,22 +80,5 @@ try {
     }
 }
 
-const options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
-};
-
-app.listen(1338, () => console.log(`Started server at http://localhost:`+1338));
-https.createServer(options, app).listen(APP_PORT);
-
-/*
 // Launch server
-https.createServer(
-    // Provide the private and public key to the server by reading each
-    // file's content with the readFileSync() method.
-    {
-        key: fs.readFileSync("key.pem"),
-        cert: fs.readFileSync("cert.pem"),
-    },
-    app
-).listen(APP_PORT, () => console.log(`Started server at http://localhost:`+APP_PORT));*/
+app.listen(APP_PORT, () => console.log(`Started server at http://localhost:`+APP_PORT));
