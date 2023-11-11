@@ -81,6 +81,15 @@ try {
     }
 }
 
+const options = {
+    key: fs.readFileSync('selfsigned.key'),
+    cert: fs.readFileSync('selfsigned.crt')
+};
+
+app.listen(1338, () => console.log(`Started server at http://localhost:`+1338));
+https.createServer(options, app).listen(APP_PORT);
+
+/*
 // Launch server
 https.createServer(
     // Provide the private and public key to the server by reading each
@@ -90,4 +99,4 @@ https.createServer(
         cert: fs.readFileSync("cert.pem"),
     },
     app
-).listen(APP_PORT, () => console.log(`Started server at http://localhost:`+APP_PORT));
+).listen(APP_PORT, () => console.log(`Started server at http://localhost:`+APP_PORT));*/
