@@ -82,8 +82,8 @@ try {
 }
 
 const options = {
-    key: fs.readFileSync('selfsigned.key'),
-    cert: fs.readFileSync('selfsigned.crt')
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem')
 };
 
 app.listen(1338, () => console.log(`Started server at http://localhost:`+1338));
